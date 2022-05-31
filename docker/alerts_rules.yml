@@ -1,0 +1,13 @@
+groups:
+  - name: memoria
+    rules:
+      - alert: altoUsoDaMemoria
+        expr: ( sum(jvm_memory_used_bytes) / sum(jvm_memory_max_bytes))* 100 > 70.0
+        for: 5m
+        labels:
+          app: cineminha
+          severity: critical
+        annotations:
+          title: Alto uso da memória
+          summary: A memória atingiu um nível alto de uso.
+          description: A memória atingiu uma taxa de uso elevado de 70% durante 5 minutos.
